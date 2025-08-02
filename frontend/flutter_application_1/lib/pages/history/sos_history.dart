@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/search_bar.dart';
 import 'package:flutter_application_1/pages/history/sos_history.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
 import 'package:flutter_application_1/pages/history/sos_history_detail.dart';
@@ -60,46 +61,15 @@ class SOSHistory extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Search bar
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 40,
-                      padding: EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.search, color: Colors.black54),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: TextField(
-                              style: TextStyle(fontSize: 14),
-                              decoration: InputDecoration(
-                                hintText: 'Cari riwayat SOS kamu...',
-                                hintStyle: TextStyle(color: Colors.black45),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF2A4BA0), // Warna biru seperti gambar
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(Icons.tune, color: Colors.white, size: 20),
-                  ),
-                ],
+              MenuSearchBar(
+                onChanged: (value) {
+                  print("User mengetik: $value");
+                },
+                onFilterSelected: (filter) {
+                  print("Filter dipilih: $filter");
+                },
               ),
+
               const SizedBox(height: 24),
               const Text(
                 'Hari Ini',

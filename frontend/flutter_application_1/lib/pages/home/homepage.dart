@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
     final selected = await showMenu<String>(
       context: context,
-      color: const Color(0xFF5CA3C6),
+      color: Color(0xFF5CA3C6),
       position: RelativeRect.fromRect(
         position & const Size(40, 40),
         Offset.zero & overlay.size,

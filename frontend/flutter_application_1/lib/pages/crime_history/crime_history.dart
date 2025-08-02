@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
 import 'package:flutter_application_1/components/menu_appbar.dart';
+import 'package:flutter_application_1/components/search_bar.dart';
 
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -257,45 +258,14 @@ class _CrimeHistoryState extends State<CrimeHistory> {
   }
 
   Widget _buildSearchBar() {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            height: 40,
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.search, color: Colors.black54),
-                SizedBox(width: 8),
-                Expanded(
-                  child: TextField(
-                    style: TextStyle(fontSize: 14),
-                    decoration: InputDecoration(
-                      hintText: 'Cari riwayat SOS kamu...',
-                      hintStyle: TextStyle(color: Colors.black45),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(width: 8),
-        Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-            color: Color(0xFF2A4BA0),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Icon(Icons.tune, color: Colors.white, size: 20),
-        ),
-      ],
+    return // Search bar
+    MenuSearchBar(
+      onChanged: (value) {
+        print("User mengetik: $value");
+      },
+      onFilterSelected: (filter) {
+        print("Filter dipilih: $filter");
+      },
     );
   }
 
