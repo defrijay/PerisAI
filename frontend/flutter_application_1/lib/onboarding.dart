@@ -98,7 +98,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Text(
                           page['subtitle']!,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 16, color: Colors.white70),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white70,
+                          ),
                         ),
                         if (index == _pages.length - 1)
                           Padding(
@@ -112,7 +115,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 const SizedBox(height: 10),
                                 ElevatedButton(
                                   onPressed: () {},
-                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.grey[700],
+                                  ),
                                   child: const Text('Sign Up'),
                                 ),
                               ],
@@ -136,7 +141,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   height: 12,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _currentPage == index ? Colors.orange : Colors.white24,
+                    color: _currentPage == index
+                        ? Colors.orange
+                        : Colors.white24,
                   ),
                 ),
               ),
