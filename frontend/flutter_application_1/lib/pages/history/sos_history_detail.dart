@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
+import 'package:flutter_application_1/components/menu_appbar.dart';
 
 class SosHistoryDetail extends StatelessWidget {
   const SosHistoryDetail({super.key});
@@ -8,12 +9,24 @@ class SosHistoryDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF2E2F5B),
-      appBar: AppBar(
-        title: const Text('Detail Riwayat SOS'),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.white,
+      appBar: MenuAppBar(
+        title: "Detail Riwayat SOS",
+        onBackPressed: () => Navigator.pop(context),
+        onHelpPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Bantuan'),
+              content: const Text('Ini adalah halaman bantuan.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Tutup'),
+                ),
+              ],
+            ),
+          );
+        },
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

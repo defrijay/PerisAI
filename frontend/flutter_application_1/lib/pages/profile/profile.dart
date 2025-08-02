@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/menu_appbar.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
 
 class Profile extends StatefulWidget {
@@ -16,26 +17,77 @@ class _ProfileState extends State<Profile> {
   final List<String> genderOptions = ['Laki - Laki', 'Perempuan'];
   final List<String> maritalStatusOptions = ['Belum Menikah', 'Menikah'];
 
+  void _showPopupMenu(BuildContext context, Offset position) async {
+    final RenderBox overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox;
+
+    final selected = await showMenu<String>(
+      context: context,
+      color: const Color(0xFF5CA3C6),
+      position: RelativeRect.fromRect(
+        position & const Size(40, 40),
+        Offset.zero & overlay.size,
+      ),
+      items: <PopupMenuEntry<String>>[
+        PopupMenuItem<String>(
+          value: 'profile',
+          child: Row(
+            children: const [
+              Icon(Icons.person, color: Colors.white),
+              SizedBox(width: 8),
+              Text('Profile', style: TextStyle(color: Colors.white)),
+            ],
+          ),
+        ),
+        const PopupMenuDivider(),
+        PopupMenuItem<String>(
+          value: 'logout',
+          child: Row(
+            children: const [
+              Icon(Icons.logout, color: Colors.white),
+              SizedBox(width: 8),
+              Text('Keluar', style: TextStyle(color: Colors.white)),
+            ],
+          ),
+        ),
+      ],
+    );
+
+    if (selected == 'profile') {
+      // TODO: Navigasi ke halaman profile
+      Navigator.push(context, MaterialPageRoute(builder: (_) => Profile()));
+    } else if (selected == 'logout') {
+      // TODO: Logika logout
+      // ScaffoldMessenger.of(
+      //   context,
+      // ).showSnackBar(const SnackBar(content: Text('Logout berhasil')));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF1F2040),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text('Profil Saya', style: TextStyle(color: Colors.white)),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_vert, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
+      appBar: MenuAppBar(
+        title: "Profil Saya",
+        onBackPressed: () => Navigator.pop(context),
+        onHelpPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Bantuan'),
+              content: const Text('Ini adalah halaman bantuan.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Tutup'),
+                ),
+              ],
+            ),
+          );
+        },
       ),
+
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),

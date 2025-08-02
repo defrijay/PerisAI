@@ -3,6 +3,7 @@ import 'package:flutter_application_1/pages/history/sos_history.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
 import 'package:flutter_application_1/pages/history/sos_history_detail.dart';
 import 'package:flutter_application_1/pages/home/homepage.dart';
+import 'package:flutter_application_1/components/menu_appbar.dart';
 
 class SOSHistory extends StatelessWidget {
   const SOSHistory({super.key});
@@ -33,23 +34,24 @@ class SOSHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF1F2040),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          'Riwayat SOS',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_vert, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
+      appBar: MenuAppBar(
+        title: "Riwayat SOS",
+        onBackPressed: () => Navigator.pop(context),
+        onHelpPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Bantuan'),
+              content: const Text('Ini adalah halaman bantuan.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Tutup'),
+                ),
+              ],
+            ),
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Padding(

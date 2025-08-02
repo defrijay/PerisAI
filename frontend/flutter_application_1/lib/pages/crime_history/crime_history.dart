@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
+import 'package:flutter_application_1/components/menu_appbar.dart';
+
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CrimeHistory extends StatefulWidget {
@@ -45,24 +47,24 @@ class _CrimeHistoryState extends State<CrimeHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          'Peta Riwayat Kejahatan',
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_vert, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
+      appBar: MenuAppBar(
+        title: "Peta Riwayat Kejahatan",
+        onBackPressed: () => Navigator.pop(context),
+        onHelpPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Bantuan'),
+              content: const Text('Ini adalah halaman bantuan.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Tutup'),
+                ),
+              ],
+            ),
+          );
+        },
       ),
       body: Stack(
         children: [
