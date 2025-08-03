@@ -7,8 +7,15 @@ class SosHistoryDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final PageController _pageController = PageController();
+    final List<String> buktiImages = [
+      'https://via.placeholder.com/300x200',
+      'https://via.placeholder.com/300x200',
+      'https://via.placeholder.com/300x200',
+    ];
+
     return Scaffold(
-      backgroundColor: const Color(0xFF2E2F5B),
+      backgroundColor: Color(0xFF1F2040),
       appBar: MenuAppBar(
         title: "Detail Riwayat SOS",
         onBackPressed: () => Navigator.pop(context),
@@ -37,7 +44,6 @@ class SosHistoryDetail extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color(0xFF0A3D91),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
@@ -65,7 +71,7 @@ class SosHistoryDetail extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        '12 Juli 2025',
+                        '12 Juli 2025 |',
                         style: TextStyle(color: Colors.white70),
                       ),
                       const SizedBox(width: 16),
@@ -85,19 +91,22 @@ class SosHistoryDetail extends StatelessWidget {
 
                   // Status SOS
                   Container(
-                    padding: const EdgeInsets.all(12),
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.blue.shade100,
+                      color: Color(0xFF102B66),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
-                      children: const [
+                      children: [
                         Icon(Icons.check_circle, color: Colors.green),
                         SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             'SOS Berhasil Dikirim dan Diterima',
-                            style: TextStyle(fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -106,79 +115,179 @@ class SosHistoryDetail extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   // Location
-                  Text('Location'),
-                  const SizedBox(height: 8),
                   Container(
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xFF102B66),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    clipBehavior: Clip.hardEdge,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          'Location',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(height: 20),
                         Image.network(
                           'https://maps.googleapis.com/maps/api/staticmap?center=-6.914744,107.609810&zoom=15&size=400x200&key=YOUR_API_KEY',
-                          height: 120,
+                          height: 200,
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
-                        const Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                            'Jl. Jendral Sudirman, Bandung, Jawa Barat',
-                            style: TextStyle(fontSize: 12),
-                          ),
+                        SizedBox(height: 20),
+                        Text(
+                          'Jl. Jendral Sudirman, Bandung, Jawa Barat',
+                          style: TextStyle(fontSize: 12),
                         ),
+                        SizedBox(height: 20),
                       ],
                     ),
                   ),
                   const SizedBox(height: 16),
 
                   // Barang Bukti
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Barang Bukti'),
-                      const Icon(Icons.chevron_right, color: Colors.white),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    height: 80,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
+                  // Barang Bukti dengan Carousel dan Arrow Controls
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Color(0xFF102B66),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        for (int i = 0; i < 3; i++)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.network(
-                                'https://via.placeholder.com/80',
-                                width: 80,
-                                height: 80,
-                                fit: BoxFit.cover,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Barang Bukti',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
                               ),
                             ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    if (_pageController.hasClients) {
+                                      _pageController.previousPage(
+                                        duration: Duration(milliseconds: 300),
+                                        curve: Curves.easeInOut,
+                                      );
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    if (_pageController.hasClients) {
+                                      _pageController.nextPage(
+                                        duration: Duration(milliseconds: 300),
+                                        curve: Curves.easeInOut,
+                                      );
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        SizedBox(
+                          height: 180,
+                          child: PageView.builder(
+                            controller: _pageController,
+                            itemCount: buktiImages.length,
+                            itemBuilder: (context, index) {
+                              return ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.network(
+                                  buktiImages[index],
+                                  fit: BoxFit.cover,
+                                ),
+                              );
+                            },
                           ),
+                        ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 16),
+
+                  SizedBox(height: 16),
 
                   // Respon
-                  Text('Respon'),
-                  const SizedBox(height: 8),
                   Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(12),
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.blue.shade100,
+                      color: Color(0xFF102B66),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Text(
-                      'Ditanggapi Oleh : Bripda Andi\nTempat : Polsek Sukajadi',
-                      style: TextStyle(fontWeight: FontWeight.w500),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Respon',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Text(
+                              'Ditanggapi Oleh : ',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              'Bripda Adi',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Text(
+                              'Tempat : ',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              'Polres Sukajadi',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],

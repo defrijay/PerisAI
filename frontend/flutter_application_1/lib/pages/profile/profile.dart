@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/menu_appbar.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
+import 'dart:io';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -114,14 +115,36 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                         SizedBox(height: 4),
-                        Text(
-                          'Laki - Laki   ⬤  20 Tahun',
-                          style: TextStyle(color: Colors.white70),
+                        Row(
+                          children: [
+                            Icon(Icons.man_2_outlined, color: Colors.white70),
+                            SizedBox(width: 4),
+                            Text('Laki - Laki'),
+
+                            SizedBox(width: 16),
+
+                            Icon(
+                              Icons.calendar_month_outlined,
+                              color: Colors.white70,
+                            ),
+                            SizedBox(width: 4),
+                            Text('17 Tahun'),
+                          ],
                         ),
+
                         SizedBox(height: 4),
-                        Text(
-                          'Gegerkalong, Bandung, Jawa Barat',
-                          style: TextStyle(color: Colors.white70),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on_outlined,
+                              color: Colors.white70,
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              'Gegerkalong, Bandung, Jawa Barat',
+                              style: TextStyle(color: Colors.white70),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -135,19 +158,25 @@ class _ProfileState extends State<Profile> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF132B57),
+                  color: Color(0xFF132B57),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Detail Akun',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                    Row(
+                      children: [
+                        Icon(Icons.person, color: Colors.white),
+                        SizedBox(width: 8),
+                        Text(
+                          'Detail Akun',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 12),
                     _buildCustomTextField(
@@ -250,10 +279,13 @@ class _ProfileState extends State<Profile> {
                         Expanded(
                           child: ElevatedButton.icon(
                             onPressed: () {},
-                            icon: const Icon(Icons.edit),
-                            label: const Text('Edit Profil'),
+                            icon: Icon(Icons.edit, color: Colors.white),
+                            label: Text(
+                              'Edit Profil',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blueAccent,
+                              backgroundColor: Color(0xFF528EB2),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -264,10 +296,13 @@ class _ProfileState extends State<Profile> {
                         Expanded(
                           child: ElevatedButton.icon(
                             onPressed: () {},
-                            icon: const Icon(Icons.save),
-                            label: const Text('Simpan'),
+                            icon: Icon(Icons.save, color: Colors.white),
+                            label: const Text(
+                              'Simpan',
+                              style: TextStyle(color: Colors.white),
+                            ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blueGrey,
+                              backgroundColor: Color(0x80528EB2),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -279,10 +314,13 @@ class _ProfileState extends State<Profile> {
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       onPressed: () {},
-                      icon: const Icon(Icons.logout),
-                      label: const Text('Keluar'),
+                      icon: Icon(Icons.logout, color: Colors.white),
+                      label: Text(
+                        'Keluar',
+                        style: TextStyle(color: Colors.white),
+                      ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: Color(0xFFC31111),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -315,7 +353,7 @@ class _ProfileState extends State<Profile> {
     int maxLines = 1,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: EdgeInsets.symmetric(vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -323,23 +361,33 @@ class _ProfileState extends State<Profile> {
             label,
             style: const TextStyle(color: Colors.white70, fontSize: 14),
           ),
-          const SizedBox(height: 6),
-          TextFormField(
-            maxLines: maxLines,
-            style: const TextStyle(fontSize: 14),
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: const TextStyle(color: Colors.grey),
-              filled: true,
-              fillColor: Colors.white,
-              isDense: true,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 10,
+          SizedBox(height: 6),
+          Theme(
+            data: Theme.of(context).copyWith(
+              textSelectionTheme: const TextSelectionThemeData(
+                selectionColor: Colors.black54, // warna blok seleksi teks gelap
+                cursorColor: Colors.black, // warna kursor '|'
+                selectionHandleColor: Colors.black, // warna handle seleksi
               ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide.none,
+            ),
+            child: TextFormField(
+              maxLines: maxLines,
+              style: TextStyle(fontSize: 14, color: Colors.black),
+              cursorColor: Colors.black,
+              decoration: InputDecoration(
+                hintText: hint,
+                hintStyle: TextStyle(color: Colors.grey),
+                filled: true,
+                fillColor: Colors.white,
+                isDense: true,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 10,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none,
+                ),
               ),
             ),
           ),

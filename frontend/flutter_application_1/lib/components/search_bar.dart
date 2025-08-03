@@ -18,7 +18,7 @@ class MenuSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // 🔹 TextField dengan styling
+        // TextField dengan custom selection color
         Expanded(
           child: Container(
             height: 40,
@@ -29,20 +29,31 @@ class MenuSearchBar extends StatelessWidget {
             ),
             child: Row(
               children: [
-                const Icon(Icons.search, color: Colors.black54),
-                const SizedBox(width: 8),
+                Icon(Icons.search, color: Colors.black54),
+                SizedBox(width: 8),
                 Expanded(
-                  child: TextField(
-                    style: const TextStyle(fontSize: 14, color: Colors.black),
-                    cursorColor: Colors.black,
-                    onChanged: onChanged,
-                    onSubmitted: onSubmitted,
-                    decoration: InputDecoration(
-                      hintText: hintText,
-                      hintStyle: const TextStyle(color: Colors.black45),
-                      border: InputBorder.none,
-                      isDense: true,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Theme(
+                    data: Theme.of(context).copyWith(
+                      textSelectionTheme: const TextSelectionThemeData(
+                        selectionColor: Colors.black54,
+                        selectionHandleColor: Colors.black,
+                        cursorColor: Colors.black,
+                      ),
+                    ),
+                    child: TextField(
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                      cursorColor: Colors.black,
+                      onChanged: onChanged,
+                      onSubmitted: onSubmitted,
+                      decoration: InputDecoration(
+                        hintText: hintText,
+                        hintStyle: const TextStyle(color: Colors.black45),
+                        border: InputBorder.none,
+                        isDense: true,
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -53,7 +64,7 @@ class MenuSearchBar extends StatelessWidget {
 
         const SizedBox(width: 8),
 
-        // 🔹 PopupMenu Button untuk Filter
+        // PopupMenu Button untuk Filter
         PopupMenuButton<String>(
           color: const Color(0xFF5CA3C6),
           shape: RoundedRectangleBorder(

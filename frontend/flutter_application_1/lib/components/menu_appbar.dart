@@ -19,10 +19,7 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       title: Text(
         title,
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       centerTitle: true,
       leading: IconButton(
@@ -39,9 +36,19 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
             }
           },
           itemBuilder: (BuildContext context) => [
-            const PopupMenuItem<String>(
+            PopupMenuItem<String>(
               value: 'help',
-              child: Text('Help', style: TextStyle(color: Colors.white)),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                children: const [
+                  Icon(Icons.help_outline, color: Colors.white, size: 16),
+                  SizedBox(width: 4),
+                  Text(
+                    'Help',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
