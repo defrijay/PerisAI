@@ -3,14 +3,16 @@ import 'package:flutter_application_1/components/bottom_navbar.dart';
 import 'package:flutter_application_1/components/menu_appbar.dart';
 import 'package:flutter_application_1/components/search_bar.dart';
 import 'package:flutter_application_1/pages/crime_history/crime_history_detail.dart';
+import 'package:flutter_application_1/pages/nearby_police/nearby_police_detail.dart';
+
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class CrimeHistory extends StatefulWidget {
+class NearbyPolice extends StatefulWidget {
   @override
-  _CrimeHistoryState createState() => _CrimeHistoryState();
+  _NearbyPoliceState createState() => _NearbyPoliceState();
 }
 
-class _CrimeHistoryState extends State<CrimeHistory> {
+class _NearbyPoliceState extends State<NearbyPolice> {
   final sheetKey = GlobalKey();
   final controller = DraggableScrollableController();
 
@@ -49,7 +51,7 @@ class _CrimeHistoryState extends State<CrimeHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MenuAppBar(
-        title: "Peta Riwayat Kejahatan",
+        title: "Kantor Polisi Terdekat",
         onBackPressed: () => Navigator.pop(context),
         onHelpPressed: () {
           showDialog(
@@ -259,7 +261,7 @@ class _CrimeHistoryState extends State<CrimeHistory> {
 
   Widget _buildSearchBar() {
     return MenuSearchBar(
-      hintText: "Cari riwayat kejahatan...",
+      hintText: "Cari kantor polisi terdekat...",
       onChanged: (value) {
         print("User mengetik: $value");
       },
@@ -285,15 +287,15 @@ class _CrimeHistoryState extends State<CrimeHistory> {
         SizedBox(height: 8),
         _buildCrimeCard(
           imagePath: 'assets/crime1.png',
-          title: 'Pembegalan Sore Hari',
-          date: '12 Juli 2025 | 17:00 WIB',
+          title: 'Polsek Antapani',
+          distance: '2 Km',
           location: 'Jl. Jendral Sudirman, Bandung, Jawa Barat',
         ),
         SizedBox(height: 12),
         _buildCrimeCard(
           imagePath: 'assets/crime2.png',
-          title: 'Pembegalan Sore Hari',
-          date: '12 Juli 2025 | 17:00 WIB',
+          title: 'Polres Antapani',
+          distance: '6.5 KM',
           location: 'Jl. Jendral Sudirman, Bandung, Jawa Barat',
         ),
       ],
@@ -316,15 +318,15 @@ class _CrimeHistoryState extends State<CrimeHistory> {
         SizedBox(height: 8),
         _buildCrimeCard(
           imagePath: 'assets/crime1.png',
-          title: 'Pencurian Motor',
-          date: '10 Juli 2025 | 14:30 WIB',
+          title: 'Polres Cicendo',
+          distance: '7 KM',
           location: 'Jl. Sukajadi, Bandung, Jawa Barat',
         ),
         SizedBox(height: 12),
         _buildCrimeCard(
           imagePath: 'assets/crime2.png',
-          title: 'Penjambretan',
-          date: '08 Juli 2025 | 19:15 WIB',
+          title: 'Polda Cicendo',
+          distance: '27 KM',
           location: 'Jl. Pasteur, Bandung, Jawa Barat',
         ),
       ],
@@ -334,7 +336,7 @@ class _CrimeHistoryState extends State<CrimeHistory> {
   Widget _buildCrimeCard({
     required String imagePath,
     required String title,
-    required String date,
+    required String distance,
     required String location,
   }) {
     return Container(
@@ -380,14 +382,14 @@ class _CrimeHistoryState extends State<CrimeHistory> {
                     Row(
                       children: [
                         Icon(
-                          Icons.calendar_today,
+                          Icons.pin_end_outlined,
                           size: 14,
                           color: Colors.white60,
                         ),
                         SizedBox(width: 8),
                         Flexible(
                           child: Text(
-                            date,
+                            distance,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 12,
@@ -426,33 +428,70 @@ class _CrimeHistoryState extends State<CrimeHistory> {
           ),
           SizedBox(height: 20),
 
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              backgroundColor: Color(0xFF528EB2),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => CrimeHistoryDetail()),
-              );
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Lihat Detail',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    backgroundColor: Color(0xFF396B88),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => NearbyPoliceDetail()),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Lihat Detail',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Icon(Icons.arrow_forward, color: Colors.white),
+                    ],
                   ),
                 ),
-                SizedBox(width: 8),
-                Icon(Icons.arrow_forward, color: Colors.white),
-              ],
-            ),
+              ),
+              SizedBox(width: 12),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    backgroundColor: Color(0xFF528EB2),
+                  ),
+                  onPressed: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (_) => CrimeHistoryDetail()),
+                    // );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Hubungi',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Icon(Icons.phone_callback_outlined, color: Colors.white),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

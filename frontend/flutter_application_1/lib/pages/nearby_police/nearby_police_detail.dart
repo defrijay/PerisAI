@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
 import 'package:flutter_application_1/components/menu_appbar.dart';
 
-class SosHistoryDetail extends StatelessWidget {
-  const SosHistoryDetail({super.key});
+class NearbyPoliceDetail extends StatelessWidget {
+  const NearbyPoliceDetail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class SosHistoryDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF0A0C19),
       appBar: MenuAppBar(
-        title: "Detail Riwayat SOS",
+        title: "Detail Kantor Polisi",
         onBackPressed: () => Navigator.pop(context),
         onHelpPressed: () {
           showDialog(
@@ -52,7 +52,7 @@ class SosHistoryDetail extends StatelessWidget {
                   // Judul
                   Center(
                     child: Text(
-                      'Pembegalan Sore Hari',
+                      'Polres Antapani',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -64,77 +64,18 @@ class SosHistoryDetail extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
-                        Icons.calendar_today,
+                      Icon(
+                        Icons.pin_end_outlined,
                         color: Colors.white70,
                         size: 16,
                       ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '12 Juli 2025 |',
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                      const SizedBox(width: 16),
-                      const Icon(
-                        Icons.access_time,
-                        color: Colors.white70,
-                        size: 16,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '17:00 WIB',
-                        style: TextStyle(color: Colors.white70),
-                      ),
+                      SizedBox(width: 4),
+                      Text('6.5 KM', style: TextStyle(color: Colors.white70)),
                     ],
                   ),
                   const SizedBox(height: 16),
 
-                  // Status SOS
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF102B66),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.check_circle, color: Colors.green),
-                        SizedBox(width: 20),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Status SOS',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Text(
-                                  'SOS Berhasil Dikirim dan Diterima',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Location
+                  // Location Kantor
                   SizedBox(
                     width: double.infinity,
                     child: Container(
@@ -150,7 +91,7 @@ class SosHistoryDetail extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Lokasi Kejadian',
+                            'Lokasi Kantor',
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -172,6 +113,7 @@ class SosHistoryDetail extends StatelessWidget {
                           Text(
                             'Jl. Jendral Sudirman, Bandung, Jawa Barat',
                             style: TextStyle(fontSize: 14, color: Colors.white),
+                            softWrap: true,
                           ),
                         ],
                       ),
@@ -180,7 +122,7 @@ class SosHistoryDetail extends StatelessWidget {
 
                   SizedBox(height: 16),
 
-                  // Barang Bukti
+                  // Foto Kantor
                   Container(
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
@@ -194,7 +136,7 @@ class SosHistoryDetail extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Barang Bukti',
+                              'Foto Kantor',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -259,63 +201,40 @@ class SosHistoryDetail extends StatelessWidget {
 
                   SizedBox(height: 16),
 
-                  // Respon
+                  // Hubungi Kantor
+                  // Hubungi Kantor
                   Container(
+                    width:
+                        double.infinity, // membuat container penuh (expanded)
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: Color(0xFF102B66),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // Teks di sebelah kiri
                         Text(
-                          'Respon',
+                          'Hubungi Kantor',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
                         ),
-                        SizedBox(height: 12),
-                        Row(
-                          children: [
-                            Text(
-                              'Ditanggapi Oleh : ',
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 12,
-                              ),
-                            ),
-                            Text(
-                              'Bripda Adi',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Text(
-                              'Tempat : ',
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 12,
-                              ),
-                            ),
-                            Text(
-                              'Polres Sukajadi',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+
+                        // Icon Call di sebelah kanan
+                        IconButton(
+                          onPressed: () {
+                            print("Menghubungi kantor polisi...");
+                            // Gunakan url_launcher jika ingin langsung melakukan panggilan
+                          },
+                          icon: Icon(
+                            Icons.call_outlined,
+                            color: Colors.white,
+                            size: 30,
+                          ),
                         ),
                       ],
                     ),

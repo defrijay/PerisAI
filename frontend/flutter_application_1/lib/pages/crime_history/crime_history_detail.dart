@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
 import 'package:flutter_application_1/components/menu_appbar.dart';
 
-class SosHistoryDetail extends StatelessWidget {
-  const SosHistoryDetail({super.key});
+class CrimeHistoryDetail extends StatelessWidget {
+  const CrimeHistoryDetail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class SosHistoryDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFF0A0C19),
       appBar: MenuAppBar(
-        title: "Detail Riwayat SOS",
+        title: "Detail Riwayat Kejahatan",
         onBackPressed: () => Navigator.pop(context),
         onHelpPressed: () {
           showDialog(
@@ -89,58 +89,47 @@ class SosHistoryDetail extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
 
-                  // Status SOS
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF102B66),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.check_circle, color: Colors.green),
-                        SizedBox(width: 20),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'Status SOS',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
+                  // Deskripsi
+                  SizedBox(
+                    width: double.infinity,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF102B66),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Deskripsi',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
                             ),
-                            SizedBox(height: 12),
-                            Row(
-                              children: [
-                                Text(
-                                  'SOS Berhasil Dikirim dan Diterima',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
+                          ),
+                          SizedBox(height: 12),
+                          Text(
+                            'Terjadi pembegalan di jl. jendral sudirman sekitar pusdai yang dimana perempuan dibegal motornya ...',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 12,
                             ),
-                          ],
-                        ),
-                      ],
+                            softWrap: true,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+
                   const SizedBox(height: 16),
 
+                  // Location
                   // Location
                   SizedBox(
                     width: double.infinity,
                     child: Container(
-                      constraints: BoxConstraints(
-                        minHeight: 250,
-                      ), // memastikan tinggi minimal
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Color(0xFF102B66),
@@ -158,27 +147,26 @@ class SosHistoryDetail extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 12),
-                          SizedBox(
-                            height:
-                                200, // tentukan tinggi tetap agar tidak error
+                          Image.network(
+                            'https://maps.googleapis.com/maps/api/staticmap?center=-6.914744,107.609810&zoom=15&size=400x200&key=YOUR_API_KEY',
+                            height: 200,
                             width: double.infinity,
-                            child: Image.network(
-                              'https://maps.googleapis.com/maps/api/staticmap?center=-6.914744,107.609810&zoom=15&size=400x200&key=YOUR_API_KEY',
-                              fit: BoxFit.cover,
-                            ),
+                            fit: BoxFit.cover,
                           ),
-
                           SizedBox(height: 20),
                           Text(
                             'Jl. Jendral Sudirman, Bandung, Jawa Barat',
-                            style: TextStyle(fontSize: 14, color: Colors.white),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.white70,
+                            ),
                           ),
                         ],
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   // Barang Bukti
                   Container(
@@ -201,7 +189,6 @@ class SosHistoryDetail extends StatelessWidget {
                                 fontSize: 20,
                               ),
                             ),
-                            SizedBox(height: 12),
                             Row(
                               children: [
                                 IconButton(
@@ -236,7 +223,7 @@ class SosHistoryDetail extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 12),
                         SizedBox(
                           height: 180,
                           child: PageView.builder(

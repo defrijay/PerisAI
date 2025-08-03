@@ -34,7 +34,7 @@ class SOSHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1F2040),
+      backgroundColor: const Color(0xFF0A0C19),
       appBar: MenuAppBar(
         title: "Riwayat SOS",
         onBackPressed: () => Navigator.pop(context),
@@ -139,7 +139,7 @@ class SOSHistory extends StatelessWidget {
   }) {
     return Card(
       color: Color(0xFF102B66),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -233,7 +233,7 @@ class SOSHistory extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   backgroundColor: Color(0xFF528EB2),
                 ),
@@ -245,7 +245,7 @@ class SOSHistory extends StatelessWidget {
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
                       'Lihat Detail',
                       style: TextStyle(

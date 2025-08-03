@@ -44,8 +44,8 @@ void showUnavailableModal(BuildContext context) {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 12),
-                      const Text(
+                      SizedBox(height: 12),
+                      Text(
                         'Kembalilah kesini apabila fitur sudah tersedia lagi!',
                         style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
@@ -57,7 +57,7 @@ void showUnavailableModal(BuildContext context) {
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             backgroundColor: const Color(0xFFFF9800),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                           onPressed: () {

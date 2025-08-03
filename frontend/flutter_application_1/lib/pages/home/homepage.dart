@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/bottom_navbar.dart';
 import 'package:flutter_application_1/components/unavailable_modal.dart';
 import 'package:flutter_application_1/pages/crime_history/crime_history.dart';
+import 'package:flutter_application_1/pages/nearby_police/nearby_police.dart';
+import 'package:flutter_application_1/pages/nearby_police/nearby_police_detail.dart';
 import 'package:flutter_application_1/pages/profile/profile.dart';
 import 'package:flutter_application_1/pages/history/sos_history.dart';
 
@@ -91,6 +93,73 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showNotificationMenu(BuildContext context, Offset position) async {
+      final RenderBox overlay =
+          Overlay.of(context).context.findRenderObject() as RenderBox;
+
+      await showMenu<String>(
+        context: context,
+        color: const Color(0xFF5CA3C6),
+        position: RelativeRect.fromRect(
+          position & const Size(20, 20),
+          Offset.zero & overlay.size,
+        ),
+        items: <PopupMenuEntry<String>>[
+          // Label Minggu Ini
+          const PopupMenuItem<String>(
+            enabled: false,
+            child: Text(
+              'Minggu Ini',
+              style: TextStyle(
+                color: Colors.white70,
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
+          ),
+          PopupMenuDivider(),
+          // Notifikasi Hari Ini
+          const PopupMenuItem<String>(
+            value: 'notif1',
+            child: Text(
+              '📢 Peringatan di dekat Anda',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          const PopupMenuItem<String>(
+            value: 'notif2',
+            child: Text(
+              '🚔 Pos Polisi baru ditambahkan',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+
+          // Label Minggu Lalu
+          const PopupMenuItem<String>(
+            enabled: false,
+            child: Text(
+              'Minggu Lalu',
+              style: TextStyle(
+                color: Colors.white70,
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
+          ),
+
+          PopupMenuDivider(),
+          // Notifikasi Minggu Lalu
+          const PopupMenuItem<String>(
+            value: 'notif3',
+            child: Text(
+              'ℹ️ Update keamanan minggu lalu',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFF1F2040), // Warna biru tua background
       appBar: AppBar(
@@ -121,10 +190,19 @@ class HomePage extends StatelessWidget {
           ],
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.notifications, color: Colors.orangeAccent),
+          GestureDetector(
+            onTapDown: (TapDownDetails details) {
+              _showNotificationMenu(
+                context,
+                details.globalPosition,
+              ); // ✅ Panggil popup notifikasi
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: Icon(Icons.notifications, color: Colors.orangeAccent),
+            ),
           ),
+
           Padding(
             padding: EdgeInsets.only(right: 12),
             child: GestureDetector(
@@ -149,12 +227,19 @@ class HomePage extends StatelessWidget {
               buildMenuTile(
                 "Kantor Polisi terdekat",
                 "assets/icons/police.png",
-                () {},
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => NearbyPolice()),
+                  );
+                },
               ),
               buildMenuTile(
                 "Kontak Darurat",
                 "assets/icons/emergency_contact.png",
-                () {},
+                () {
+                  showUnavailableModal(context);
+                },
               ),
               buildMenuTile("Peta Zona Rawan", "assets/icons/map.png", () {
                 Navigator.push(
