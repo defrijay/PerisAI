@@ -45,10 +45,10 @@ class HomePage extends StatelessWidget {
     );
 
     if (selected == 'profile') {
-      // TODO: Navigasi ke halaman profile
+      // Navigasi ke halaman profile
       Navigator.push(context, MaterialPageRoute(builder: (_) => Profile()));
     } else if (selected == 'logout') {
-      // TODO: Logika logout
+      // Logika logout
       // ScaffoldMessenger.of(
       //   context,
       // ).showSnackBar(const SnackBar(content: Text('Logout berhasil')));
