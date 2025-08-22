@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'PerisAI Onboarding',
+      title: 'PerisAI',
       theme: ThemeData.dark(), // opsional, biar gelap
       home: const OnboardingScreen(),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'signin_page.dart';
+import 'signup_page.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -39,15 +41,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     },
   ];
 
-  void _goToPage(int index) {
-    if (index >= 0 && index < _pages.length) {
-      _pageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
+  // void _goToPage(int index) {
+  //   if (index >= 0 && index < _pages.length) {
+  //     _pageController.animateToPage(
+  //       index,
+  //       duration: const Duration(milliseconds: 300),
+  //       curve: Curves.easeInOut,
+  //     );
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -58,15 +60,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1B1D3A),
+      backgroundColor: const Color.fromARGB(255, 15, 16, 32),
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 10),
-            const Text(
-              'Welcome Page',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
@@ -111,7 +109,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 ),
                                 const SizedBox(height: 10),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const SignupPage()),
+                                    );
+                                  },
                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.grey[700]),
                                   child: const Text('Sign Up'),
                                 ),
@@ -136,30 +139,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   height: 12,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _currentPage == index ? Colors.orange : Colors.white24,
+                    color: _currentPage == index ? Colors.orange : const Color.fromARGB(60, 17, 74, 123),
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextButton(
-                  onPressed: _currentPage > 0
-                      ? () => _goToPage(_currentPage - 1)
-                      : null,
-                  child: const Text('← Prev'),
-                ),
-                TextButton(
-                  onPressed: _currentPage < _pages.length - 1
-                      ? () => _goToPage(_currentPage + 1)
-                      : null,
-                  child: const Text('Next →'),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //     TextButton(
+            //       onPressed: _currentPage > 0
+            //           ? () => _goToPage(_currentPage - 1)
+            //           : null,
+            //       child: const Text('← Prev'),
+            //     ),
+            //     TextButton(
+            //       onPressed: _currentPage < _pages.length - 1
+            //           ? () => _goToPage(_currentPage + 1)
+            //           : null,
+            //       child: const Text('Next →'),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(height: 20),
           ],
         ),
       ),

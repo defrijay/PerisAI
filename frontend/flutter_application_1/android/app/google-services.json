@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "733101020927",
+    "project_id": "perisai-92183",
+    "storage_bucket": "perisai-92183.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733101020927:android:59be6eac2495b09ea15eca",
+        "android_client_info": {
+          "package_name": "com.insightspark.perisai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_kdZCIonFVryIFfb6fplRDFf0ez7YWYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

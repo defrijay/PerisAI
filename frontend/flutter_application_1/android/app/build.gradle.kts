@@ -1,9 +1,23 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("com.google.gms.google-services")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
+
+dependencies {
+    // Firebase BoM memastikan semua versi Firebase kompatibel
+    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
+
+    // Tambahkan Firebase product yang ingin digunakan
+    implementation("com.google.firebase:firebase-auth") // untuk login
+    implementation("com.google.android.gms:play-services-auth") // untuk Google Sign-In
+
+    // Kalau kamu butuh Analytics juga, tambahkan:
+    // implementation("com.google.firebase:firebase-analytics")
+}
+
 
 android {
     namespace = "com.example.flutter_application_1"
@@ -21,7 +35,8 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.flutter_application_1"
+        // applicationId = "com.example.flutter_application_1"
+        applicationId = "com.insightspark.perisai"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
