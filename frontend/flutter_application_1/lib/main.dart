@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'onboarding.dart'; // pastikan path-nya benar
+import 'onboarding.dart';
+import 'package:flutter_application_1/pages/home/homepage.dart';
 
 void main() {
   runApp(const MyApp());

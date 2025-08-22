@@ -96,7 +96,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Text(
                           page['subtitle']!,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 16, color: Colors.white70),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white70,
+                          ),
                         ),
                         if (index == _pages.length - 1)
                           Padding(
