@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/onboarding.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -199,7 +200,14 @@ class SuccessPage extends StatelessWidget {
                 textAlign: TextAlign.center),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const OnboardingScreen(initialPage: 4), // langsung page ke-5 (index mulai dari 0)
+                  ),
+                );
+              },
               child: const Text("Selanjutnya"),
             ),
           ],

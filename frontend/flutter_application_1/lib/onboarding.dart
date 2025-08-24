@@ -3,15 +3,29 @@ import 'signin_page.dart';
 import 'signup_page.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+  final int initialPage;
+  const OnboardingScreen({super.key, this.initialPage = 0});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final PageController _pageController = PageController();
+  late PageController _pageController;
   int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: widget.initialPage);
+    _currentPage = widget.initialPage;
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   final List<Map<String, String>> _pages = [
     {
@@ -50,12 +64,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   //     );
   //   }
   // }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +115,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             child: Column(
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const SigninPage()), // arahkan ke SigninPage
+                                    );
+                                  },
                                   child: const Text('Sign In'),
                                 ),
                                 const SizedBox(height: 10),
